@@ -1444,3 +1444,130 @@ moveHeart();
     document.head.appendChild(style);
 </script>
 
+```html
+<section class="ai-section">
+    <h2>🤖 Ask Harshit AI</h2>
+
+    <div id="chatBox">
+        <div class="bot-msg">
+            Hi! I'm Harshit AI ❤️ Ask me anything.
+        </div>
+    </div>
+
+    <div class="input-area">
+        <input type="text" id="userInput"
+               placeholder="Ask something...">
+        <button onclick="askAI()">Send</button>
+    </div>
+</section>
+
+<style>
+.ai-section{
+    max-width:700px;
+    margin:40px auto;
+    padding:20px;
+    text-align:center;
+}
+
+#chatBox{
+    height:350px;
+    overflow-y:auto;
+    background:rgba(255,255,255,0.1);
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:15px;
+}
+
+.bot-msg,
+.user-msg{
+    padding:10px 15px;
+    margin:10px;
+    border-radius:12px;
+    max-width:80%;
+}
+
+.bot-msg{
+    background:#ff6ea8;
+    color:white;
+    text-align:left;
+}
+
+.user-msg{
+    background:white;
+    margin-left:auto;
+    text-align:right;
+}
+
+.input-area{
+    display:flex;
+    gap:10px;
+}
+
+.input-area input{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+}
+
+.input-area button{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#ff6ea8;
+    color:white;
+    cursor:pointer;
+}
+</style>
+
+<script>
+function askAI(){
+
+    const input = document.getElementById("userInput");
+    const chatBox = document.getElementById("chatBox");
+
+    let question = input.value.trim();
+
+    if(!question) return;
+
+    chatBox.innerHTML += `
+        <div class="user-msg">${question}</div>
+    `;
+
+    let reply = "You're my favorite person ❤️";
+
+    const q = question.toLowerCase();
+
+    if(q.includes("love"))
+        reply = "Because you make every day special ❤️";
+
+    else if(q.includes("miss"))
+        reply = "More than you can imagine 🥺❤️";
+
+    else if(q.includes("favorite memory"))
+        reply = "Every moment with you is my favorite ❤️";
+
+    else if(q.includes("angry"))
+        reply = "I can never stay angry at you for long 😌";
+
+    else if(q.includes("future"))
+        reply = "I see lots of happiness and adventures together ✨";
+
+    else if(q.includes("cute"))
+        reply = "Obviously you 😌❤️";
+
+    setTimeout(() => {
+
+        chatBox.innerHTML += `
+            <div class="bot-msg">${reply}</div>
+        `;
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+    }, 600);
+
+    input.value = "";
+}
+</script>
+```
+
