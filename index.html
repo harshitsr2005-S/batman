@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muski ❤️ - Ultimate Love Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            overflow-x: hidden;
+            cursor: none;
+            position: relative;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #ff6ea8;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+            box-shadow: 0 0 20px #ff6ea8, inset 0 0 20px #ff6ea8;
+        }
+
+        .cursor.active {
+            box-shadow: 0 0 40px #ff6ea8, inset 0 0 40px #ff6ea8, 0 0 60px #ff1493;
+        }
+
+        .cursor-trail {
+            width: 8px;
+            height: 8px;
+            background: #ff6ea8;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.6;
+            box-shadow: 0 0 10px #ff6ea8;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 110, 168, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #ff6ea8, #ff1493);
+            border-radius: 6px;
+            box-shadow: 0 0 20px #ff6ea8;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #ff1493, #ff6ea8);
+            box-shadow: 0 0 40px #ff6ea8;
+        }
+
+        .animated-background {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            background: linear-gradient(45deg, #0a0e27, #1a1f3a, #16213e, #0f3460);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .blob {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            filter: blur(80px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .blob1 {
+            background: linear-gradient(45deg, #ff6ea8, #ff1493);
+            top: 20%;
+            left: 10%;
+            animation: blob-animation-1 8s infinite;
+        }
+
+        .blob2 {
+            background: linear-gradient(45deg, #ff1493, #ff6ea8);
+            top: 50%;
+            right: 10%;
+            animation: blob-animation-2 10s infinite;
+        }
+
+        .blob3 {
+            background: linear-gradient(45deg, #ff8fb8, #ff6ea8);
+            bottom: 10%;
+            left: 30%;
+            animation: blob-animation-3 12s infinite;
+        }
+
+        @keyframes blob-animation-1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-50px, 50px) scale(0.9); }
+        }
+
+        @keyframes blob-animation-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-50px, 50px) scale(0.9); }
+            66% { transform: translate(50px, -50px) scale(1.1); }
+        }
+
+        @keyframes blob-animation-3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, 30px) scale(1.05); }
+            66% { transform: translate(-30px, -30px) scale(0.95); }
+        }
+
+        .falling-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 5;
+            font-size: 2rem;
+            animation: fall linear forwards;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            perspective: 1000px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(255, 110, 168, 0.05) 0%, rgba(15, 52, 96, 0.05) 100%);
+            border-radius: 30px;
+            padding: 60px 40px;
+            max-width: 900px;
+            border: 2px solid rgba(255, 110, 168, 0.2);
+            backdrop-filter: blur(30px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 110, 168, 0.1) 0%, transparent 70%);
+            animation: hero-glow 8s ease-in-out infinite;
+        }
+
+        @keyframes hero-glow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -20px) scale(1.2); }
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            color: #ff6ea8;
+            text-shadow: 0 0 20px #ff6ea8, 0 0 40px #ff6ea8, 0 0 60px #ff1493, 0 0 80px #ff1493;
+            margin-bottom: 30px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            animation: hero-title 1.5s ease-out, title-glow 3s ease-in-out infinite 1.5s;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes hero-title {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.8);
+                text-shadow: 0 0 0 rgba(255, 110, 168, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                text-shadow: 0 0 20px #ff6ea8, 0 0 40px #ff6ea8, 0 0 60px #ff1493;
+            }
+        }
+
+        @keyframes title-glow {
+            0%, 100% {
+                text-shadow: 0 0 20px #ff6ea8, 0 0 40px #ff6ea8, 0 0 60px #ff1493;
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 0 0 40px #ff6ea8, 0 0 80px #ff6ea8, 0 0 120px #ff1493;
+                transform: scale(1.05);
+            }
+        }
+
+        .profile-container {
+            position: relative;
+            margin-bottom: 40px;
+            display: inline-block;
+            z-index: 1;
+        }
+
+        .profile-frame {
+            position: relative;
+            width: 280px;
+            height: 380px;
+        }
+
+        .frame-border {
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 3px;
+            background: linear-gradient(135deg, #ff6ea8, #ff1493, #ff6ea8);
+            z-index: 1;
+            animation: border-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes border-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 110, 168, 0.5), inset 0 0 20px rgba(255, 110, 168, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 110, 168, 0.8), inset 0 0 40px rgba(255, 110, 168, 0.5);
+            }
+        }
+
+        .frame-border::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(255, 26, 147, 0.1));
+        }
+
+        .profile {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 17px;
+            object-fit: cover;
+            object-position: center 0%;
+            border: 3px solid #ff6ea8;
+            z-index: 2;
+            box-shadow: 0 20px 60px rgba(255, 110, 168, 0.6);
+            animation: profile-float 4s ease-in-out infinite;
+        }
+
+        @keyframes profile-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .profile-glow {
+            position: absolute;
+            inset: -20px;
+            border-radius: 25px;
+            background: radial-gradient(circle, rgba(255, 110, 168, 0.4), transparent 70%);
+            filter: blur(30px);
+            animation: glow-pulse 3s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 30px auto;
+            line-height: 1.8;
+            color: #ffb7d2;
+            font-weight: 300;
+            animation: fade-in-up 1.5s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .typing {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #ff6ea8;
+            animation: typing 5s steps(50, end) forwards, blink 0.7s infinite;
+            width: 0;
+            display: inline-block;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0%, 49%, 100% { border-color: #ff6ea8; }
+            50%, 99% { border-color: transparent; }
+        }
+
+        .card {
+            max-width: 800px;
+            background: linear-gradient(135deg, rgba(255, 110, 168, 0.08) 0%, rgba(15, 52, 96, 0.08) 100%);
+            backdrop-filter: blur(30px);
+            border: 2px solid rgba(255, 110, 168, 0.3);
+            padding: 50px;
+            border-radius: 25px;
+            animation: card-entrance 0.8s ease-out;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 110, 168, 0.1) 0%, transparent 70%);
+            animation: card-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes card-glow {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
+        }
+
+        @keyframes card-entrance {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+                filter: blur(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .card:hover {
+            background: linear-gradient(135deg, rgba(255, 110, 168, 0.15) 0%, rgba(15, 52, 96, 0.15) 100%);
+            border-color: rgba(255, 110, 168, 0.6);
+            box-shadow: 0 0 40px rgba(255, 110, 168, 0.3), inset 0 0 40px rgba(255, 110, 168, 0.1);
+            transform: translateY(-10px);
+        }
+
+        .card h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: #ff6ea8;
+            text-shadow: 0 0 20px rgba(255, 110, 168, 0.6);
+            position: relative;
+            z-index: 1;
+            animation: title-pop 0.8s ease-out;
+        }
+
+        @keyframes title-pop {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .card p {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #e8d5e8;
+            margin: 15px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .divider {
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #ff6ea8, transparent);
+            margin: 30px auto;
+            border-radius: 5px;
+            box-shadow: 0 0 20px #ff6ea8;
+            animation: divider-expand 1s ease-out;
+        }
+
+        @keyframes divider-expand {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 150px;
+                opacity: 1;
+            }
+        }
+
+        .btn {
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #ff6ea8, #ff1493);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin: 15px;
+            box-shadow: 0 10px 30px rgba(255, 110, 168, 0.4), 0 0 40px rgba(255, 110, 168, 0.2);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(255, 110, 168, 0.6), 0 0 80px rgba(255, 110, 168, 0.4);
+            border-color: rgba(255, 110, 168, 0.8);
+        }
+
+        .achievement-item {
+            font-size: 1.3rem;
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 110, 168, 0.15), rgba(255, 26, 147, 0.1));
+            border-radius: 15px;
+            border-left: 5px solid #ff6ea8;
+            animation: slide-in-left 0.6s ease-out;
+            box-shadow: 0 5px 20px rgba(255, 110, 168, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .achievement-item:hover {
+            background: linear-gradient(135deg, rgba(255, 110, 168, 0.25), rgba(255, 26, 147, 0.2));
+            transform: translateX(15px);
+            box-shadow: 0 10px 30px rgba(255, 110, 168, 0.25);
+        }
+
+        @keyframes slide-in-left {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .vinyl {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), #111);
+            box-shadow: 0 0 60px rgba(255, 110, 168, 0.4), inset -5px -5px 20px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.1);
+            animation: spin 8s linear infinite;
+            position: relative;
+            margin: 30px auto;
+            z-index: 1;
+        }
+
+        .vinyl::before {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle, #ff6ea8 30%, #ff1493 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 30px rgba(255, 110, 168, 0.8);
+            z-index: 2;
+        }
+
+        .vinyl::after {
+            content: '';
+            position: absolute;
+            inset: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 70%);
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .heart {
+            font-size: 120px;
+            animation: beat 1.2s infinite;
+            display: inline-block;
+            margin: 20px 0;
+            text-shadow: 0 0 40px rgba(255, 110, 168, 0.8);
+            filter: drop-shadow(0 0 15px #ff6ea8);
+            z-index: 1;
+            position: relative;
+        }
+
+        @keyframes beat {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 15px #ff6ea8);
+            }
+            25% {
+                transform: scale(1.3);
+                filter: drop-shadow(0 0 30px #ff6ea8);
+            }
+            50% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 15px #ff6ea8);
+            }
+        }
+
+        .quote-text {
+            font-size: 2.2rem;
+            font-weight: 300;
+            line-height: 2.8;
+            color: #ffb7d2;
+            font-style: italic;
+            max-width: 600px;
+            animation: quote-reveal 1.2s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes quote-reveal {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hindi-poetry {
+            font-size: 1.6rem;
+            line-height: 3;
+            color: #ffc0e0;
+            font-weight: 500;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            animation: fade-in 1.5s ease-out;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+            max-width: 900px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(255, 26, 147, 0.1));
+            border: 2px solid rgba(255, 110, 168, 0.3);
+            cursor: pointer;
+            animation: gallery-entrance 0.6s ease-out;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        @keyframes gallery-entrance {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .gallery-item:hover {
+            border-color: rgba(255, 110, 168, 0.8);
+            box-shadow: 0 0 30px rgba(255, 110, 168, 0.4);
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            opacity: 0.6;
+        }
+
+        .quotes-carousel {
+            max-width: 700px;
+            position: relative;
+            height: 150px;
+            margin: 30px auto;
+        }
+
+        .quote-card {
+            position: absolute;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 110, 168, 0.15), rgba(255, 26, 147, 0.1));
+            border-radius: 15px;
+            border: 2px solid rgba(255, 110, 168, 0.3);
+            text-align: center;
+            opacity: 0;
+            transform: translateX(100px) scale(0.8);
+            transition: all 0.6s ease;
+            z-index: 1;
+        }
+
+        .quote-card.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+
+        .quote-card.prev {
+            opacity: 0;
+            transform: translateX(-100px) scale(0.8);
+        }
+
+        .surprise-btn {
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #ff1493, #ff6ea8);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 26, 147, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-top: 20px;
+            z-index: 1;
+        }
+
+        .surprise-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 26, 147, 0.6);
+        }
+
+        .popup-message {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, rgba(255, 110, 168, 0.9), rgba(255, 26, 147, 0.8));
+            padding: 25px 30px;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 40px rgba(255, 110, 168, 0.5);
+            z-index: 9999;
+            animation: popup-slide 0.5s ease-out;
+            border-left: 5px solid #fff;
+            max-width: 300px;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes popup-slide {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .rotating-hearts {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            margin: 30px auto;
+        }
+
+        .rotating-heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            font-size: 2rem;
+            line-height: 30px;
+            text-align: center;
+            animation: orbit 6s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(50px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
+        }
+
+        .timeline-section {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            padding: 30px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 30px 0;
+            animation: slide-in-left 0.6s ease-out;
+            z-index: 1;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #ff6ea8, #ff1493);
+            border-radius: 50%;
+            margin-right: 30px;
+            margin-top: 5px;
+            box-shadow: 0 0 15px rgba(255, 110, 168, 0.6);
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6ea8, transparent);
+            top: 50%;
+            left: -35px;
+            transform: translateY(-50%);
+        }
+
+        .footer {
+            padding: 50px;
+            text-align: center;
+            color: #ff6ea8;
+            font-size: 1.2rem;
+            background: rgba(15, 52, 96, 0.6);
+            border-top: 2px solid rgba(255, 110, 168, 0.4);
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+            text-shadow: 0 0 20px rgba(255, 110, 168, 0.3);
+        }
+
+        svg {
+            filter: drop-shadow(0 0 20px rgba(255, 110, 168, 0.5));
+        }
+
+        .love-meter {
+            width: 250px;
+            height: 30px;
+            background: rgba(255, 110, 168, 0.2);
+            border-radius: 15px;
+            border: 2px solid #ff6ea8;
+            overflow: hidden;
+        }
+
+        .love-fill {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff6ea8, #ff1493);
+            border-radius: 13px;
+            box-shadow: 0 0 20px #ff6ea8;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .card {
+                padding: 30px 20px;
+            }
+
+            .vinyl {
+                width: 150px;
+                height: 150px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .popup-message {
+                bottom: 15px;
+                right: 15px;
+                max-width: 250px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor" id="cursor"></div>
+    <div class="animated-background"></div>
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>✨ MUSKI ❤️</h1>
+        <div class="profile-container">
+            <div class="profile-glow"></div>
+            <div class="profile-frame">
+                <div class="frame-border"></div>
+                <img src="muski.jpg" alt="Muski" class="profile">
+            </div>
+        </div>
+        <p class="typing">There are billions of people in the world, but my favorite one is you.</p>
+        <div class="divider"></div>
+        <a class="btn" href="#letter">Enter My World ✨</a>
+    </section>
+
+    <!-- ACHIEVEMENT SECTION -->
+    <section>
+        <div class="card">
+            <h2>🏆 Achievement Unlocked</h2>
+            <div class="divider"></div>
+            <div class="achievement-item">⬆️ +10,000 Happiness Points</div>
+            <div class="achievement-item">😊 +5,000 Smiles Gained</div>
+            <div class="achievement-item">♾️ +∞ Forever Memories</div>
+            <div class="achievement-item">💕 +100% Of My Heart</div>
+            <p style="margin-top: 30px; font-size: 1.5rem; color: #ff6ea8;">Reason: <span style="font-weight: 700;">Muski</span> ❤️</p>
+        </div>
+    </section>
+
+    <!-- LOVE QUOTES CAROUSEL -->
+    <section>
+        <h2 style="font-size: 3rem; color: #ff6ea8; margin-bottom: 30px;">💬 Beautiful Moments</h2>
+        <div class="quotes-carousel" id="quotesCarousel">
+            <div class="quote-card active">
+                <p style="font-size: 1.3rem; color: #ffb7d2;">"Every moment with you is a beautiful memory in the making."</p>
+            </div>
+            <div class="quote-card">
+                <p style="font-size: 1.3rem; color: #ffb7d2;">"You are my greatest adventure and my favorite place to be."</p>
+            </div>
+            <div class="quote-card">
+                <p style="font-size: 1.3rem; color: #ffb7d2;">"In you, I found not just love, but a home."</p>
+            </div>
+            <div class="quote-card">
+                <p style="font-size: 1.3rem; color: #ffb7d2;">"You make me want to be a better person every day."</p>
+            </div>
+            <div class="quote-card">
+                <p style="font-size: 1.3rem; color: #ffb7d2;">"Thank you for loving me exactly as I am."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROTATING HEARTS -->
+    <section>
+        <h2 style="font-size: 3rem; color: #ff6ea8; margin-bottom: 40px;">💕 Endless Love</h2>
+        <div class="rotating-hearts" id="rotatingHearts">
+            <div class="rotating-heart">❤️</div>
+        </div>
+        <p style="font-size: 1.3rem; color: #ffb7d2; margin-top: 40px;">Just like these hearts, my love for you never stops revolving around you.</p>
+    </section>
+
+    <!-- LETTER SECTION -->
+    <section id="letter">
+        <div class="card">
+            <h2>💌 Dear Muski</h2>
+            <div class="divider"></div>
+            <div class="quote-text">
+                <p>Life was already moving fine.</p>
+                <p style="margin-top: 30px;">Then you came.</p>
+                <p style="margin-top: 30px;">And somehow normal days started feeling special.</p>
+                <p style="margin-top: 40px;">Every smile feels brighter.<br>Every moment feels warmer.<br>Every heartbeat says your name.</p>
+                <p style="margin-top: 40px; color: #ffb7d2; font-size: 1.1rem;">Thank you for being part of my story and making it the most beautiful one. ❤️</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section>
+        <div class="card">
+            <h2>📸 Our Memories</h2>
+            <div class="divider"></div>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <div class="gallery-item-placeholder">📷</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-item-placeholder">🌹</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-item-placeholder">💑</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-item-placeholder">✨</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-item-placeholder">🌅</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-item-placeholder">💫</div>
+                </div>
+            </div>
+            <p style="margin-top: 30px; font-size: 1.1rem; color: #ffb7d2;">Click on any moment to relive the magic ✨</p>
+        </div>
+    </section>
+
+    <!-- MUSIC SECTION -->
+    <section>
+        <h2 style="font-size: 3.2rem; color: #ff6ea8; text-shadow: 0 0 30px #ff6ea8, 0 0 60px #ff1493; margin-bottom: 40px; animation: title-glow 3s ease-in-out infinite;">
+            💖 Our Song 💖
+        </h2>
+        <div class="vinyl"></div>
+        <a class="btn" target="_blank" href="https://youtu.be/-yvwawJ9u_M">
+            🎧 Listen To Our Song
+        </a>
+    </section>
+
+    <!-- SECRET MESSAGE -->
+    <section>
+        <div class="card">
+            <h2>✨ Secret Message</h2>
+            <div class="divider"></div>
+            <div class="quote-text">
+                <p>Among all the chapters of my life,</p>
+                <p style="margin-top: 20px;">You became my favorite one.</p>
+                <p style="margin-top: 30px; font-size: 1.2rem; color: #ff6ea8;">Every moment with you is a memory I'll treasure forever.</p>
+            </div>
+            <button class="surprise-btn" onclick="showSurpriseMessage()">🎁 Click For A Surprise 🎁</button>
+        </div>
+    </section>
+
+    <!-- LOVE CALCULATOR -->
+    <section>
+        <div class="card">
+            <h2>💘 Love Calculator</h2>
+            <div class="divider"></div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; margin: 30px 0;">
+                <div style="font-size: 1.2rem; color: #ffb7d2;">My love for you is:</div>
+                <div style="width: 250px; height: 30px; background: rgba(255, 110, 168, 0.2); border-radius: 15px; border: 2px solid #ff6ea8; overflow: hidden;">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(90deg, #ff6ea8, #ff1493); border-radius: 13px; animation: love-fill-animation 2s ease-out; box-shadow: 0 0 20px #ff6ea8;"></div>
+                </div>
+                <div style="font-size: 3rem; color: #ff6ea8; font-weight: bold; animation: beat 1.2s infinite;">100%</div>
+                <p style="font-size: 1.1rem; color: #ffb7d2; font-style: italic;">Always at maximum capacity! ❤️</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WISH LIST & DREAMS -->
+    <section>
+        <div class="card">
+            <h2>🌟 Our Dreams Together</h2>
+            <div class="divider"></div>
+            <div style="max-width: 600px; margin: 30px auto; display: grid; gap: 20px;">
+                <div style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(255, 26, 147, 0.08)); padding: 20px; border-radius: 12px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out;">
+                    <p style="font-size: 1.3rem; color: #ffb7d2; margin: 0;">✈️ Travel the world together</p>
+                    <p style="font-size: 0.95rem; color: #ff8fb8; margin: 8px 0 0 0;">Creating memories in every corner of the earth</p>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(255, 26, 147, 0.08)); padding: 20px; border-radius: 12px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.1s both;">
+                    <p style="font-size: 1.3rem; color: #ffb7d2; margin: 0;">🏡 Build a beautiful home together</p>
+                    <p style="font-size: 0.95rem; color: #ff8fb8; margin: 8px 0 0 0;">A place filled with love, laughter, and warmth</p>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(255, 26, 147, 0.08)); padding: 20px; border-radius: 12px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.2s both;">
+                    <p style="font-size: 1.3rem; color: #ffb7d2; margin: 0;">👨‍👩‍👧‍👦 Start a beautiful family</p>
+                    <p style="font-size: 0.95rem; color: #ff8fb8; margin: 8px 0 0 0;">With love, care, and endless joy</p>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(255, 26, 147, 0.08)); padding: 20px; border-radius: 12px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.3s both;">
+                    <p style="font-size: 1.3rem; color: #ffb7d2; margin: 0;">💍 Grow old together</p>
+                    <p style="font-size: 0.95rem; color: #ff8fb8; margin: 8px 0 0 0;">Hand in hand, through every season of life</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUTO-GENERATED LOVE LETTER -->
+    <section>
+        <div class="card">
+            <h2>💌 Auto-Generated Love Letter</h2>
+            <div class="divider"></div>
+            <div id="love-letter" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.08), rgba(15, 52, 96, 0.08)); padding: 30px; border-radius: 15px; border: 2px solid rgba(255, 110, 168, 0.3); max-width: 600px; margin: 30px auto; min-height: 250px; font-size: 1.1rem; line-height: 2; color: #ffb7d2; animation: fade-in 1s ease-out;">
+                <p>Dear Muski,</p>
+                <p style="margin-top: 15px;">As I sit here thinking about you, my heart overflows with emotions. Every moment spent with you feels like a dream come true. Your presence has transformed my life in ways I never imagined possible.</p>
+                <p style="margin-top: 15px;">Thank you for being the incredible person you are. Thank you for your unconditional love, your beautiful smile, and the way you make every ordinary day feel special.</p>
+                <p style="margin-top: 15px;">Forever grateful to have you in my life.</p>
+                <p style="margin-top: 20px; color: #ff6ea8;">With all my love,<br>Your forever love ❤️</p>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="surprise-btn" onclick="generateNewLetter()" style="cursor: pointer;">📝 Generate New Letter 📝</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE HEARTS GAME -->
+    <section>
+        <div class="card">
+            <h2>🎮 Love Game - Click The Hearts</h2>
+            <div class="divider"></div>
+            <p style="color: #ffb7d2; margin-bottom: 30px; font-size: 1.1rem;">Click as many hearts as you can! Each heart represents my love for you ❤️</p>
+            <div id="game-container" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; max-width: 500px; margin: 0 auto; padding: 20px; background: rgba(255, 110, 168, 0.05); border-radius: 15px; border: 2px solid rgba(255, 110, 168, 0.2);">
+                <!-- Hearts will be generated by JavaScript -->
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <p style="font-size: 1.3rem; color: #ff6ea8; margin-bottom: 15px;">❤️ Hearts Clicked: <span id="heart-count" style="font-weight: bold;">0</span></p>
+                <button class="surprise-btn" onclick="resetHeartGame()" style="cursor: pointer;">🔄 Play Again 🔄</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEAUTIFUL CONFESSIONS -->
+    <section>
+        <div class="card">
+            <h2>🗣️ My Confessions To You</h2>
+            <div class="divider"></div>
+            <div style="max-width: 650px; margin: 30px auto;">
+                <div style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.12), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out;">
+                    <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 600; margin-bottom: 10px;">Confession #1:</p>
+                    <p style="color: #ffb7d2; font-size: 1.1rem;">I love you more than words could ever express. Sometimes I just stare at you in disbelief that you're actually mine. 💕</p>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.12), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.1s both;">
+                    <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 600; margin-bottom: 10px;">Confession #2:</p>
+                    <p style="color: #ffb7d2; font-size: 1.1rem;">I get butterflies every single time I hear your voice or see your name pop up on my screen. Even after all this time. 🦋</p>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.12), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.2s both;">
+                    <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 600; margin-bottom: 10px;">Confession #3:</p>
+                    <p style="color: #ffb7d2; font-size: 1.1rem;">You inspire me to be a better person every single day. Your kindness, strength, and beauty motivate me constantly. 🌟</p>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.12), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 12px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.3s both;">
+                    <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 600; margin-bottom: 10px;">Confession #4:</p>
+                    <p style="color: #ffb7d2; font-size: 1.1rem;">My future only makes sense if you're in it. You're not just my love, you're my destiny. ✨</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR LOVE STORY -->
+    <section>
+        <div class="card">
+            <h2>📖 Our Beautiful Love Story</h2>
+            <div class="divider"></div>
+            <div style="max-width: 700px; margin: 30px auto; text-align: left;">
+                <div style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out;">
+                    <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 700; margin-bottom: 15px;">📍 The Beginning</p>
+                    <p style="color: #ffb7d2; font-size: 1.05rem; line-height: 1.8;">The day I met you, everything changed. It wasn't just a moment—it was the beginning of forever. Your presence brought color to my world, and from that instant, I knew you were someone special. Every detail of that moment is etched in my heart forever. 💫</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.1s both;">
+                    <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 700; margin-bottom: 15px;">💕 Falling For You</p>
+                    <p style="color: #ffb7d2; font-size: 1.05rem; line-height: 1.8;">I fell in love with your smile, your laugh, your kind heart, and the way you light up any room you walk into. Every conversation felt like destiny, every glance felt meaningful. I didn't fall in love with you gradually—I fell completely, madly, and forever. 🌹</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.2s both;">
+                    <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 700; margin-bottom: 15px;">✨ Our Beautiful Moments</p>
+                    <p style="color: #ffb7d2; font-size: 1.05rem; line-height: 1.8;">Every moment with you becomes a treasure. Laughing until our sides hurt, comfortable silences that speak volumes, late-night conversations about dreams and fears. You've given me memories that I'll cherish for eternity. We're not just living—we're creating a masterpiece together. 🎨</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 15px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.3s both;">
+                    <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 700; margin-bottom: 15px;">🌟 Forever & Always</p>
+                    <p style="color: #ffb7d2; font-size: 1.05rem; line-height: 1.8;">This is not just a love story—it's my favorite story. With you, I don't just see a future; I see a lifetime of adventures, of growth, of unconditional love. You are my today and all my tomorrows. Our story is just beginning, and I can't wait to write every chapter with you. 💍✨</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YOUR BEAUTIFUL QUALITIES -->
+    <section>
+        <div class="card">
+            <h2>✨ Your Beautiful Qualities</h2>
+            <div class="divider"></div>
+            <div style="max-width: 700px; margin: 30px auto; display: grid; gap: 20px;">
+                <div class="quality-card" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.12), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 12px; border-left: 5px solid #ff6ea8; cursor: pointer; transition: all 0.3s ease; animation: slide-in-left 0.6s ease-out;" onmouseover="this.style.transform='translateX(15px)'; this.style.boxShadow='0 10px 30px rgba(255, 110, 168, 0.25)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none'">
+                    <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 700; margin-bottom: 10px;">💎 Your Kindness</p>
+                    <p style="color: #ffb7d2; font-size: 1rem;">The way you care about others, even at the expense of your own comfort, shows the purity of your heart. Your compassion is not just shown in words but in every action. You make the world a better place just by being in it.</p>
+                </div>
+
+                <div class="quality-card" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.12), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 12px; border-left: 5px solid #ff6ea8; cursor: pointer; transition: all 0.3s ease; animation: slide-in-left 0.6s ease-out 0.1s both;" onmouseover="this.style.transform='translateX(15px)'; this.style.boxShadow='0 10px 30px rgba(255, 110, 168, 0.25)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none'">
+                    <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 700; margin-bottom: 10px;">🌟 Your Intelligence</p>
+                    <p style="color: #ffb7d2; font-size: 1rem;">The way your mind works fascinates me. Your insights, your perspective, and the way you see solutions where others see problems—it's brilliant. Conversations with you are never boring; they're enlightening.</p>
+                </div>
+
+                <div class="quality-card" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.12), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 12px; border-left: 5px solid #ff6ea8; cursor: pointer; transition: all 0.3s ease; animation: slide-in-left 0.6s ease-out 0.2s both;" onmouseover="this.style.transform='translateX(15px)'; this.style.boxShadow='0 10px 30px rgba(255, 110, 168, 0.25)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none'">
+                    <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 700; margin-bottom: 10px;">🎨 Your Creativity</p>
+                    <p style="color: #ffb7d2; font-size: 1rem;">The unique way you express yourself, the way you think outside the box, and the beauty you bring to everything you touch—it's absolutely mesmerizing. You inspire me to see the world differently.</p>
+                </div>
+
+                <div class="quality-card" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.12), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 12px; border-left: 5px solid #ff6ea8; cursor: pointer; transition: all 0.3s ease; animation: slide-in-left 0.6s ease-out 0.3s both;" onmouseover="this.style.transform='translateX(15px)'; this.style.boxShadow='0 10px 30px rgba(255, 110, 168, 0.25)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none'">
+                    <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 700; margin-bottom: 10px;">💪 Your Strength</p>
+                    <p style="color: #ffb7d2; font-size: 1rem;">Not just physical, but emotional and mental strength. The way you face challenges head-on, the resilience you show, and how you never give up—it makes me believe in you even more.</p>
+                </div>
+
+                <div class="quality-card" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.12), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 12px; border-left: 5px solid #ff6ea8; cursor: pointer; transition: all 0.3s ease; animation: slide-in-left 0.6s ease-out 0.4s both;" onmouseover="this.style.transform='translateX(15px)'; this.style.boxShadow='0 10px 30px rgba(255, 110, 168, 0.25)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none'">
+                    <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 700; margin-bottom: 10px;">🎭 Your Authenticity</p>
+                    <p style="color: #ffb7d2; font-size: 1rem;">You are beautifully, unapologetically yourself. No pretense, no fake persona—just pure, genuine you. That authenticity is what makes you irreplaceable. I love every version of you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOVE PLAYLIST SECTION -->
+    <section>
+        <div class="card">
+            <h2>🎵 Love Playlist For You</h2>
+            <div class="divider"></div>
+            <p style="color: #ffb7d2; margin-bottom: 30px; font-size: 1.1rem;">Songs that remind me of you and our love story 💕</p>
+            <div style="max-width: 600px; margin: 0 auto; display: grid; gap: 15px;">
+                <a href="https://youtu.be/-yvwawJ9u_M" target="_blank" style="display: flex; align-items: center; gap: 15px; padding: 20px; background: linear-gradient(135deg, rgba(255, 110, 168, 0.15), rgba(255, 26, 147, 0.1)); border-radius: 12px; border: 2px solid rgba(255, 110, 168, 0.3); text-decoration: none; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 10px 30px rgba(255, 110, 168, 0.3)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none'">
+                    <span style="font-size: 1.8rem;">🎧</span>
+                    <div style="text-align: left; flex-grow: 1;">
+                        <p style="color: #ff6ea8; font-weight: 700; margin: 0;">Our Song</p>
+                        <p style="color: #ffb7d2; font-size: 0.95rem; margin: 5px 0 0 0;">The one that started it all 💕</p>
+                    </div>
+                    <span style="color: #ff6ea8; font-size: 1.3rem;">▶️</span>
+                </a>
+
+                <div style="padding: 20px; background: linear-gradient(135deg, rgba(255, 110, 168, 0.15), rgba(255, 26, 147, 0.1)); border-radius: 12px; border: 2px solid rgba(255, 110, 168, 0.3); cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 10px 30px rgba(255, 110, 168, 0.3)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none'">
+                    <p style="color: #ff6ea8; font-weight: 700; margin: 0;">Your Favorite Song</p>
+                    <p style="color: #ffb7d2; font-size: 0.95rem; margin: 5px 0 0 0;">Because it makes me think of your beautiful smile ✨</p>
+                </div>
+
+                <div style="padding: 20px; background: linear-gradient(135deg, rgba(255, 110, 168, 0.15), rgba(255, 26, 147, 0.1)); border-radius: 12px; border: 2px solid rgba(255, 110, 168, 0.3); cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 10px 30px rgba(255, 110, 168, 0.3)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none'">
+                    <p style="color: #ff6ea8; font-weight: 700; margin: 0;">Love & Romance</p>
+                    <p style="color: #ffb7d2; font-size: 0.95rem; margin: 5px 0 0 0;">Every word describes what I feel for you 💖</p>
+                </div>
+
+                <div style="padding: 20px; background: linear-gradient(135deg, rgba(255, 110, 168, 0.15), rgba(255, 26, 147, 0.1)); border-radius: 12px; border: 2px solid rgba(255, 110, 168, 0.3); cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 10px 30px rgba(255, 110, 168, 0.3)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none'">
+                    <p style="color: #ff6ea8; font-weight: 700; margin: 0;">Forever With You</p>
+                    <p style="color: #ffb7d2; font-size: 0.95rem; margin: 5px 0 0 0;">Our song for the rest of our lives ♾️</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE DATE IDEAS GENERATOR -->
+    <section>
+        <div class="card">
+            <h2>💕 Date Ideas Generator</h2>
+            <div class="divider"></div>
+            <p style="color: #ffb7d2; margin-bottom: 30px; font-size: 1.1rem;">Click the button to get a romantic date idea just for us!</p>
+            <div id="date-idea-box" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(15, 52, 96, 0.08)); padding: 30px; border-radius: 15px; border: 2px solid rgba(255, 110, 168, 0.3); min-height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                <p style="font-size: 1.3rem; color: #ffb7d2; margin: 0; font-style: italic;">Click the button to reveal a date idea! 🎁</p>
+            </div>
+            <button class="surprise-btn" onclick="generateDateIdea()" style="cursor: pointer; width: 100%; max-width: 400px;">💡 Generate Date Idea 💡</button>
+        </div>
+    </section>
+
+    <!-- ASK HARSHIT AI CHATBOT -->
+    <section style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px 30px;">
+        <div class="card" style="max-width: 700px; width: 100%;">
+            <h2>🤖 Ask Me Anything ❤️</h2>
+            <div class="divider"></div>
+            <p style="color: #ffb7d2; margin-bottom: 20px; font-size: 1rem;">Ask me anything about our love 💕</p>
+            
+            <div id="chatBox" style="height: 350px; overflow-y: auto; background: rgba(255, 110, 168, 0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; border: 2px solid #ff6ea8;">
+                <div style="padding: 12px 15px; margin: 10px 0; border-radius: 12px; background: linear-gradient(135deg, #ff6ea8, #ff1493); color: white; text-align: left; max-width: 80%; box-shadow: 0 5px 15px rgba(255, 110, 168, 0.4); word-wrap: break-word;">
+                    Hi Muski! 🤍 Ask me anything about us or how much I love you ❤️
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 20px; position: relative; z-index: 100;">
+                <input 
+                    type="text" 
+                    id="userInput" 
+                    placeholder="Type your question..." 
+                    style="
+                        flex: 1; 
+                        padding: 15px; 
+                        border: 2px solid #ff6ea8;
+                        border-radius: 10px; 
+                        background: #1a1f3a;
+                        color: #ffb7d2;
+                        font-size: 1rem; 
+                        font-family: 'Poppins', sans-serif;
+                        outline: none;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 0 20px rgba(255, 110, 168, 0.2);
+                    "
+                    onkeypress="if(event.key === 'Enter') askAI();"
+                    onfocus="this.style.borderColor='#ff1493'; this.style.boxShadow='0 0 30px rgba(255, 110, 168, 0.5)';"
+                    onblur="this.style.borderColor='#ff6ea8'; this.style.boxShadow='0 0 20px rgba(255, 110, 168, 0.2)';"
+                >
+                <button 
+                    onclick="askAI()" 
+                    style="
+                        padding: 15px 30px;
+                        background: linear-gradient(135deg, #ff6ea8, #ff1493);
+                        color: white;
+                        border: none;
+                        border-radius: 10px;
+                        font-weight: 700;
+                        font-size: 1rem;
+                        cursor: pointer;
+                        box-shadow: 0 10px 30px rgba(255, 110, 168, 0.4);
+                        transition: all 0.3s ease;
+                        white-space: nowrap;
+                    "
+                    onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 40px rgba(255, 110, 168, 0.6)';"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(255, 110, 168, 0.4)';"
+                >
+                    Send 💬
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        #userInput::placeholder {
+            color: #ff8fb8;
+            opacity: 1;
+            font-style: italic;
+        }
+        
+        #userInput::-webkit-outer-spin-button,
+        #userInput::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+
+    <!-- PULSING LOVE TEXT -->
+    <section>
+        <div style="text-align: center;">
+            <h2 style="font-size: 4rem; color: #ff6ea8; animation: title-glow 2s ease-in-out infinite; text-shadow: 0 0 40px #ff6ea8;">I LOVE YOU MUSKI 💕</h2>
+            <p style="font-size: 1.4rem; color: #ffb7d2; margin-top: 20px; animation: fade-in-up 1.5s ease-out;">More than words can ever say...</p>
+        </div>
+    </section>
+
+    <!-- FOREVER SECTION -->
+    <section>
+        <div class="heart"></div>
+        <h2 style="font-size: 3rem; margin-top: 30px; margin-bottom: 40px; animation: hero-title 1.5s ease-out;">Forever My Favorite Person</h2>
+        <div class="divider"></div>
+        <div class="hindi-poetry">
+            <p>Wo mera ishq hai,<br>Mohabbat hai,<br>Ibadat hai...</p>
+            <br>
+            <p>Chhodta hoon usse,<br>Par chhoot nahi pata,<br></p>
+            <br>
+            <p>Ye kaisi meri aadat hai... 💕</p>
+            <br>
+            <p style="font-size: 1.4rem; margin-top: 30px; color: #ffb7d2; font-style: italic;">
+                "You are not just my love, you are my life"
+            </p>
+        </div>
+    </section>
+
+    <!-- WHY I LOVE YOU -->
+    <section>
+        <div class="card">
+            <h2>💝 Reasons Why I Love You</h2>
+            <div class="divider"></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
+                <div class="achievement-item">✨ Your smile is my sunshine</div>
+                <div class="achievement-item">🌟 Your laugh is my favorite song</div>
+                <div class="achievement-item">💫 Your kindness is inspiring</div>
+                <div class="achievement-item">🎯 Your presence is calming</div>
+                <div class="achievement-item">🌈 Your dreams inspire me</div>
+                <div class="achievement-item">🔥 Your confidence is attractive</div>
+                <div class="achievement-item">💎 Your heart is pure gold</div>
+                <div class="achievement-item">🎭 Your quirks make me smile</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section>
+        <div class="card">
+            <h2>📅 Our Timeline</h2>
+            <div class="divider"></div>
+            <div class="timeline-section">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div>
+                        <p style="font-size: 1.3rem; color: #ff6ea8; font-weight: bold;">❤️ Day We Met</p>
+                        <p style="color: #ffb7d2;">My life changed forever in that moment...</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div>
+                        <p style="font-size: 1.3rem; color: #ff6ea8; font-weight: bold;">💕 First Moment</p>
+                        <p style="color: #ffb7d2;">Every second felt like forever...</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div>
+                        <p style="font-size: 1.3rem; color: #ff6ea8; font-weight: bold;">💖 Making Memories</p>
+                        <p style="color: #ffb7d2;">Collecting beautiful moments together...</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div>
+                        <p style="font-size: 1.3rem; color: #ff6ea8; font-weight: bold;">✨ Forever Starts Now</p>
+                        <p style="color: #ffb7d2;">Every day is a blessing with you...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIME COUNTER -->
+    <section>
+        <div class="card">
+            <h2>⏰ Time Spent Together</h2>
+            <div class="divider"></div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 30px 0; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <div style="background: rgba(255, 110, 168, 0.15); padding: 20px; border-radius: 12px; border: 2px solid #ff6ea8;">
+                    <h3 style="font-size: 2.5rem; color: #ff6ea8; margin: 0;" id="days">0</h3>
+                    <p style="color: #ffb7d2; margin-top: 5px;">Days</p>
+                </div>
+                <div style="background: rgba(255, 110, 168, 0.15); padding: 20px; border-radius: 12px; border: 2px solid #ff6ea8;">
+                    <h3 style="font-size: 2.5rem; color: #ff6ea8; margin: 0;" id="hours">0</h3>
+                    <p style="color: #ffb7d2; margin-top: 5px;">Hours</p>
+                </div>
+                <div style="background: rgba(255, 110, 168, 0.15); padding: 20px; border-radius: 12px; border: 2px solid #ff6ea8;">
+                    <h3 style="font-size: 2.5rem; color: #ff6ea8; margin: 0;" id="minutes">0</h3>
+                    <p style="color: #ffb7d2; margin-top: 5px;">Minutes</p>
+                </div>
+                <div style="background: rgba(255, 110, 168, 0.15); padding: 20px; border-radius: 12px; border: 2px solid #ff6ea8;">
+                    <h3 style="font-size: 2.5rem; color: #ff6ea8; margin: 0;" id="seconds">0</h3>
+                    <p style="color: #ffb7d2; margin-top: 5px;">Seconds</p>
+                </div>
+            </div>
+            <p style="margin-top: 30px; font-size: 1.1rem; color: #ffb7d2;">Every moment with you is precious and unforgettable ✨</p>
+        </div>
+    </section>
+
+    <!-- LOVE PROMISES -->
+    <section>
+        <div class="card">
+            <h2>💍 My Promise To You</h2>
+            <div class="divider"></div>
+            <div style="max-width: 600px; margin: 30px auto;">
+                <div class="achievement-item">✨ I promise to always make you smile</div>
+                <div class="achievement-item">💪 I promise to support your dreams</div>
+                <div class="achievement-item">🤝 I promise to be there in good and bad times</div>
+                <div class="achievement-item">❤️ I promise to love you unconditionally</div>
+                <div class="achievement-item">🌟 I promise to never take you for granted</div>
+                <div class="achievement-item">🎯 I promise to be your rock and comfort</div>
+                <div class="achievement-item">🌈 I promise to create beautiful memories</div>
+                <div class="achievement-item">♾️ I promise to love you forever</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL MESSAGE -->
+    <section>
+        <div class="card">
+            <h2>📝 One Last Thing...</h2>
+            <div class="divider"></div>
+            <p style="font-size: 1.4rem; line-height: 2.5; color: #ffb7d2;">
+                If I could give you one thing in life, it would be the ability to see yourself through my eyes, 
+                so you could finally understand how special, beautiful, and loved you truly are. ❤️
+                <br><br>
+                Thank you for being the best part of my life. 
+                <br>
+                You complete me in ways I never thought possible.
+                <br><br>
+                Forever yours,<br>
+                <span style="color: #ff6ea8; font-weight: bold; font-size: 1.6rem;">Your Love ❤️</span>
+            </p>
+        </div>
+    </section>
+
+    <div class="footer">
+        <p>Made with ❤️ for the most special person in my life</p>
+        <p style="margin-top: 10px; font-size: 0.95rem; color: #ff8fb8;">Always yours... Forever ✨</p>
+        <p style="margin-top: 10px; font-size: 0.9rem; color: #ff8fb8;">This website is a token of my infinite love for you 💕</p>
+    </div>
+
+    <script>
+        // ============ CUSTOM CURSOR ============
+        const cursor = document.getElementById('cursor');
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.2;
+            cursorY += (mouseY - cursorY) * 0.2;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+
+        animateCursor();
+
+        document.addEventListener('mousemove', (e) => {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            document.body.appendChild(trail);
+            setTimeout(() => trail.remove(), 800);
+        });
+
+        document.addEventListener('mousedown', () => cursor.classList.add('active'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('active'));
+
+        // ============ FALLING HEARTS ============
+        function createFallingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'falling-heart';
+            heart.textContent = ['❤️', '💕', '💖', '💗'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '-50px';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+
+        setInterval(createFallingHeart, 800);
+
+        // ============ PARTICLE SYSTEM ============
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.color = ['#ff6ea8', '#ff1493', '#ffb7d2'][Math.floor(Math.random() * 3)];
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        for (let i = 0; i < 100; i++) particles.push(new Particle());
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // ============ QUOTES CAROUSEL ============
+        function rotateQuotes() {
+            const cards = document.querySelectorAll('.quote-card');
+            cards.forEach(card => {
+                if (card.classList.contains('active')) {
+                    card.classList.remove('active');
+                    card.classList.add('prev');
+                } else if (card.classList.contains('prev')) {
+                    card.classList.remove('prev');
+                    const nextCard = card.nextElementSibling;
+                    if (nextCard && nextCard.classList.contains('quote-card')) {
+                        nextCard.classList.add('active');
+                    } else {
+                        cards[0].classList.add('active');
+                    }
+                }
+            });
+        }
+
+        setInterval(rotateQuotes, 4000);
+
+        // ============ TIME COUNTER ============
+        function updateTimeCounter() {
+            const startDate = new Date('2022-11-16').getTime();
+            const now = new Date().getTime();
+            const difference = now - startDate;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((difference / 1000 / 60) % 60);
+            const seconds = Math.floor((difference / 1000) % 60);
+
+            document.getElementById('days').innerHTML = days;
+            document.getElementById('hours').innerHTML = hours;
+            document.getElementById('minutes').innerHTML = minutes;
+            document.getElementById('seconds').innerHTML = seconds;
+        }
+
+        updateTimeCounter();
+        setInterval(updateTimeCounter, 1000);
+
+        // ============ SMOOTH SCROLL ============
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ============ SCROLL ANIMATIONS ============
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'card-entrance 0.8s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => observer.observe(card));
+
+        // ============ LOVE LETTER GENERATOR ============
+        const letterTemplates = [
+            {
+                intro: "My Dearest Muski,",
+                body: "Every moment I spend with you is a blessing beyond measure. Your smile brightens even my darkest days. I can't imagine my life without you in it. You are my greatest gift. 💕"
+            },
+            {
+                intro: "To My Beautiful Muski,",
+                body: "Thank you for being my rock, my inspiration, and my reason to smile. Your unconditional love has healed parts of me I didn't know were broken. Forever grateful for you. ❤️"
+            },
+            {
+                intro: "My Love,",
+                body: "In you, I found everything I was looking for and things I didn't even know I needed. You complete me in ways words fail to describe. I love you infinitely. 💖"
+            },
+            {
+                intro: "Dearest Muski,",
+                body: "You are not just my love, you are my home. Wherever you are, that's where I belong. Thank you for loving me, believing in me, and standing by me always. Forever yours. 💕"
+            },
+            {
+                intro: "My Favorite Person,",
+                body: "I fall more in love with you every single day. Your kindness, your strength, your beauty - everything about you takes my breath away. I'm so grateful to have you in my life. 🌟❤️"
+            }
+        ];
+
+        function generateNewLetter() {
+            const randomTemplate = letterTemplates[Math.floor(Math.random() * letterTemplates.length)];
+            const letterDiv = document.getElementById('love-letter');
+            
+            letterDiv.style.opacity = '0';
+            setTimeout(() => {
+                letterDiv.innerHTML = `
+                    <p>${randomTemplate.intro}</p>
+                    <p style="margin-top: 15px;">${randomTemplate.body}</p>
+                    <p style="margin-top: 20px; color: #ff6ea8;">With all my love,<br>Your forever love ❤️</p>
+                `;
+                letterDiv.style.opacity = '1';
+                letterDiv.style.transition = 'opacity 0.5s ease';
+            }, 300);
+            createConfetti();
+        }
+
+        // ============ HEART GAME ============
+        let heartCount = 0;
+
+        function initHeartGame() {
+            const gameContainer = document.getElementById('game-container');
+            gameContainer.innerHTML = '';
+            heartCount = 0;
+            document.getElementById('heart-count').textContent = '0';
+
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.cssText = `
+                    font-size: 2.5rem;
+                    cursor: pointer;
+                    text-align: center;
+                    padding: 10px;
+                    border-radius: 10px;
+                    background: rgba(255, 110, 168, 0.1);
+                    transition: all 0.3s ease;
+                    border: 2px solid transparent;
+                `;
+
+                heart.addEventListener('click', function() {
+                    heartCount++;
+                    document.getElementById('heart-count').textContent = heartCount;
+                    
+                    this.style.transform = 'scale(1.3) rotateZ(360deg)';
+                    this.style.background = 'rgba(255, 110, 168, 0.3)';
+                    this.style.border = '2px solid #ff6ea8';
+                    
+                    createConfetti();
+
+                    setTimeout(() => { this.innerHTML = '💕'; }, 300);
+                });
+
+                heart.addEventListener('mouseover', function() {
+                    if (this.innerHTML === '❤️') {
+                        this.style.transform = 'scale(1.15)';
+                        this.style.background = 'rgba(255, 110, 168, 0.2)';
+                    }
+                });
+
+                heart.addEventListener('mouseout', function() {
+                    if (this.innerHTML === '❤️') {
+                        this.style.transform = 'scale(1)';
+                        this.style.background = 'rgba(255, 110, 168, 0.1)';
+                    }
+                });
+
+                gameContainer.appendChild(heart);
+            }
+        }
+
+        function resetHeartGame() { initHeartGame(); }
+        initHeartGame();
+
+        // ============ DATE IDEAS GENERATOR ============
+        const dateIdeas = [
+            "🌅 Watch the sunrise together while holding hands and sharing dreams for the future",
+            "🍽️ Cook a romantic dinner together, trying a new recipe and feeding each other bites",
+            "🎬 Movie marathon in blanket fort with your favorite films and endless cuddles",
+            "🌳 Picnic under the stars with wine, chocolate, and stargazing conversation",
+            "💃 Dance in the kitchen while making breakfast together with our favorite songs",
+            "📚 Read poetry to each other in candlelight while lying close on the couch",
+            "🎨 Paint together and let each other guide the other's brushstrokes",
+            "🌊 Beach day collecting seashells, swimming, and watching the sunset together",
+            "☕ Coffee at our favorite café, just talking and laughing for hours",
+            "🎮 Play our favorite game together, winner gets a kiss from the loser",
+            "🎤 Karaoke night singing our favorite love songs to each other",
+            "🌹 Surprise flower delivery to your work with a love note",
+            "💍 Stargazing while making promises of forever to each other",
+            "🎪 Adventure park day trying new rides and laughing together",
+            "📸 Photoshoot where I capture you being beautifully yourself",
+            "🧘 Couples yoga and meditation session followed by a spa day at home",
+            "🍰 Baking your favorite dessert together and feeding it to each other",
+            "🚗 Road trip to a destination we've always wanted to see",
+            "💕 Recreate our first date with all the details and even better ending",
+            "🌺 Garden walk holding hands, talking about our dreams and future together"
+        ];
+
+        function generateDateIdea() {
+            const randomIdea = dateIdeas[Math.floor(Math.random() * dateIdeas.length)];
+            const box = document.getElementById('date-idea-box');
+            
+            box.style.opacity = '0';
+            box.style.transform = 'scale(0.9)';
+            
+            setTimeout(() => {
+                box.innerHTML = `<p style="font-size: 1.3rem; color: #ffb7d2; margin: 0; line-height: 1.8;">${randomIdea}</p>`;
+                box.style.opacity = '1';
+                box.style.transform = 'scale(1)';
+                box.style.transition = 'all 0.5s ease';
+            }, 300);
+            
+            createConfetti();
+        }
+
+        // ============ HARSHIT AI CHATBOT ============
+        function askAI() {
+            const input = document.getElementById("userInput");
+            const chatBox = document.getElementById("chatBox");
+            let question = input.value.trim();
+            
+            if (!question) return;
+            
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.style.cssText = `
+                padding: 10px 15px;
+                margin: 10px;
+                border-radius: 12px;
+                max-width: 80%;
+                margin-left: auto;
+                background: white;
+                color: #0a0e27;
+                text-align: right;
+                box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+                font-weight: 500;
+            `;
+            userMsg.textContent = question;
+            chatBox.appendChild(userMsg);
+            
+            // Generate AI response
+            let reply = "You're my favorite person ❤️";
+            const q = question.toLowerCase();
+            
+            if (q.includes("love") || q.includes("pyaar"))
+                reply = "Because you make every day special and fill my heart with joy ❤️";
+            else if (q.includes("miss") || q.includes("yaad"))
+                reply = "More than you can possibly imagine 🥺❤️ You mean the world to me";
+            else if (q.includes("favorite memory"))
+                reply = "Every single moment with you is my favorite. But especially our first... 🌹✨";
+            else if (q.includes("angry") || q.includes("fight"))
+                reply = "I can never stay angry at you for long. You always win with that smile 😌❤️";
+            else if (q.includes("future") || q.includes("forever"))
+                reply = "I see a lifetime of happiness, adventures, and endless love together ✨💕";
+            else if (q.includes("cute") || q.includes("beautiful"))
+                reply = "Obviously you! Every single day 😌❤️✨";
+            else if (q.includes("why love") || q.includes("kyun"))
+                reply = "Because you're kind, beautiful, intelligent, and make my heart skip beats ❤️";
+            else if (q.includes("sorry") || q.includes("forgive"))
+                reply = "Always forgiven. I love you too much to ever hold grudges 💕";
+            else if (q.includes("promise") || q.includes("vada"))
+                reply = "I promise to love you forever, stand by you always, and make you smile every day ❤️∞";
+            else if (q.includes("dream") || q.includes("sapna"))
+                reply = "My biggest dream is a beautiful life with you, filled with love and laughter 🌟💕";
+            else if (q.includes("thank") || q.includes("shukriya"))
+                reply = "Thank YOU for being my everything, my reason to smile ❤️🙏";
+            else if (q.includes("special"))
+                reply = "You are the most special person in my entire world 👑❤️";
+            else if (q.includes("heart"))
+                reply = "You have my whole heart, forever and always 💕🔐";
+            else if (q.includes("missing you"))
+                reply = "I miss you every second we're apart. You're my favorite person 🥺❤️";
+            else if (q.includes("smile"))
+                reply = "Your smile is my sunshine, my happiness, my reason for everything ☀️❤️";
+            else if (q.includes("forever"))
+                reply = "Forever with you sounds like the perfect plan ∞💕";
+            else if (q.includes("help") || q.includes("need"))
+                reply = "I'm always here for you, no matter what. You can count on me ❤️";
+            
+            // Add AI response after delay
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.style.cssText = `
+                    padding: 10px 15px;
+                    margin: 10px;
+                    border-radius: 12px;
+                    max-width: 80%;
+                    background: linear-gradient(135deg, #ff6ea8, #ff1493);
+                    color: white;
+                    text-align: left;
+                    box-shadow: 0 5px 15px rgba(255, 110, 168, 0.3);
+                    animation: slide-in-left 0.5s ease-out;
+                `;
+                botMsg.textContent = reply;
+                chatBox.appendChild(botMsg);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                createConfetti();
+            }, 600);
+            
+            input.value = "";
+        }
+
+        // ============ SURPRISE MESSAGE ============
+        function showSurpriseMessage() {
+            const messages = [
+                "You are my favorite person in the entire universe! 💫",
+                "Every day with you is a blessing! 🙏✨",
+                "You make my heart skip beats! 💓",
+                "I fall in love with you more every single day! 💕",
+                "You are worth every moment of my life! 👑❤️",
+                "My love for you is infinite! ♾️💕",
+                "You are my home, my love, my everything! 🏠💕",
+                "Thank you for being my reason to smile! 😊❤️",
+                "Forever isn't long enough with you! 🌟💕",
+                "You are the best decision I ever made! 🎯❤️"
+            ];
+
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            const popup = document.createElement('div');
+            popup.className = 'popup-message';
+            popup.textContent = randomMessage;
+            document.body.appendChild(popup);
+
+            setTimeout(() => {
+                popup.style.animation = 'popup-slide 0.5s ease-out reverse';
+                setTimeout(() => popup.remove(), 500);
+            }, 3000);
+
+            createConfetti();
+        }
+
+        // ============ CONFETTI EFFECT ============
+        function createConfetti() {
+            const colors = ['#ff6ea8', '#ff1493', '#ffb7d2', '#ff8fb8'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.borderRadius = '50%';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.boxShadow = `0 0 10px ${confetti.style.background}`;
+                confetti.style.zIndex = '9998';
+                document.body.appendChild(confetti);
+
+                let yPos = 0;
+                const speed = Math.random() * 3 + 2;
+                const sway = Math.random() * 2 - 1;
+                
+                const animate = () => {
+                    yPos += speed;
+                    confetti.style.transform = `translateY(${yPos}px) translateX(${Math.sin(yPos * 0.02) * sway * 30}px)`;
+                    if (yPos < window.innerHeight) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        confetti.remove();
+                    }
+                };
+                animate();
+            }
+        }
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                createConfetti();
+                const popup = document.createElement('div');
+                popup.className = 'popup-message';
+                popup.textContent = '🌟 Beautiful memory captured! ❤️';
+                document.body.appendChild(popup);
+                setTimeout(() => {
+                    popup.style.animation = 'popup-slide 0.5s ease-out reverse';
+                    setTimeout(() => popup.remove(), 500);
+                }, 2000);
+            });
+        });
+
+        let scrollEventCount = 0;
+        window.addEventListener('scroll', () => {
+            scrollEventCount++;
+            if (scrollEventCount % 3 === 0) createFallingHeart();
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes love-fill-animation {
+                from { width: 0; }
+                to { width: 100%; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+</body>
+</html>
