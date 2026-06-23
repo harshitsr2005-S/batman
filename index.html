@@ -1097,3 +1097,266 @@
 
 </body>
 </html>
+<!-- ============ ADD THESE NEW SECTIONS BEFORE THE FOOTER DIV ============ -->
+
+<!-- INTERACTIVE LOVE CALCULATOR -->
+<section>
+    <div class="card">
+        <h2>💘 Love Calculator</h2>
+        <div class="divider"></div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; margin: 30px 0;">
+            <div style="font-size: 1.2rem; color: #ffb7d2;">My love for you is:</div>
+            <div class="love-meter" style="width: 250px; height: 30px; background: rgba(255, 110, 168, 0.2); border-radius: 15px; border: 2px solid #ff6ea8; overflow: hidden;">
+                <div class="love-fill" style="width: 100%; height: 100%; background: linear-gradient(90deg, #ff6ea8, #ff1493); border-radius: 13px; animation: love-fill-animation 2s ease-out; box-shadow: 0 0 20px #ff6ea8;"></div>
+            </div>
+            <div style="font-size: 3rem; color: #ff6ea8; font-weight: bold; animation: beat 1.2s infinite;">100%</div>
+            <p style="font-size: 1.1rem; color: #ffb7d2; font-style: italic;">Always at maximum capacity! ❤️</p>
+        </div>
+    </div>
+</section>
+
+<!-- WISH LIST & DREAMS -->
+<section>
+    <div class="card">
+        <h2>🌟 Our Dreams Together</h2>
+        <div class="divider"></div>
+        <div style="max-width: 600px; margin: 30px auto; display: grid; gap: 20px;">
+            <div class="dream-item" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(255, 26, 147, 0.08)); padding: 20px; border-radius: 12px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out;">
+                <p style="font-size: 1.3rem; color: #ffb7d2; margin: 0;">✈️ Travel the world together</p>
+                <p style="font-size: 0.95rem; color: #ff8fb8; margin: 8px 0 0 0;">Creating memories in every corner of the earth</p>
+            </div>
+            <div class="dream-item" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(255, 26, 147, 0.08)); padding: 20px; border-radius: 12px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.1s both;">
+                <p style="font-size: 1.3rem; color: #ffb7d2; margin: 0;">🏡 Build a beautiful home together</p>
+                <p style="font-size: 0.95rem; color: #ff8fb8; margin: 8px 0 0 0;">A place filled with love, laughter, and warmth</p>
+            </div>
+            <div class="dream-item" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(255, 26, 147, 0.08)); padding: 20px; border-radius: 12px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.2s both;">
+                <p style="font-size: 1.3rem; color: #ffb7d2; margin: 0;">👨‍👩‍👧‍👦 Start a beautiful family</p>
+                <p style="font-size: 0.95rem; color: #ff8fb8; margin: 8px 0 0 0;">With love, care, and endless joy</p>
+            </div>
+            <div class="dream-item" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.1), rgba(255, 26, 147, 0.08)); padding: 20px; border-radius: 12px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.3s both;">
+                <p style="font-size: 1.3rem; color: #ffb7d2; margin: 0;">💍 Grow old together</p>
+                <p style="font-size: 0.95rem; color: #ff8fb8; margin: 8px 0 0 0;">Hand in hand, through every season of life</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INTERACTIVE LOVE LETTER GENERATOR -->
+<section>
+    <div class="card">
+        <h2>💌 Auto-Generated Love Letter</h2>
+        <div class="divider"></div>
+        <div id="love-letter" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.08), rgba(15, 52, 96, 0.08)); padding: 30px; border-radius: 15px; border: 2px solid rgba(255, 110, 168, 0.3); max-width: 600px; margin: 30px auto; min-height: 250px; font-size: 1.1rem; line-height: 2; color: #ffb7d2; animation: fade-in 1s ease-out;">
+            <p>Dear Muski,</p>
+            <p style="margin-top: 15px;">As I sit here thinking about you, my heart overflows with emotions. Every moment spent with you feels like a dream come true. Your presence has transformed my life in ways I never imagined possible.</p>
+            <p style="margin-top: 15px;">Thank you for being the incredible person you are. Thank you for your unconditional love, your beautiful smile, and the way you make every ordinary day feel special.</p>
+            <p style="margin-top: 15px;">Forever grateful to have you in my life.</p>
+            <p style="margin-top: 20px; color: #ff6ea8;">With all my love,<br>Your forever love ❤️</p>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="surprise-btn" onclick="generateNewLetter()" style="cursor: pointer;">📝 Generate New Letter 📝</button>
+        </div>
+    </div>
+</section>
+
+<!-- INTERACTIVE HEARTS GAME -->
+<section>
+    <div class="card">
+        <h2>🎮 Love Game - Click The Hearts</h2>
+        <div class="divider"></div>
+        <p style="color: #ffb7d2; margin-bottom: 30px; font-size: 1.1rem;">Click as many hearts as you can! Each heart represents my love for you ❤️</p>
+        <div id="game-container" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; max-width: 500px; margin: 0 auto; padding: 20px; background: rgba(255, 110, 168, 0.05); border-radius: 15px; border: 2px solid rgba(255, 110, 168, 0.2);">
+            <!-- Hearts will be generated by JavaScript -->
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <p style="font-size: 1.3rem; color: #ff6ea8; margin-bottom: 15px;">❤️ Hearts Clicked: <span id="heart-count" style="font-weight: bold;">0</span></p>
+            <button class="surprise-btn" onclick="resetHeartGame()" style="cursor: pointer;">🔄 Play Again 🔄</button>
+        </div>
+    </div>
+</section>
+
+<!-- BEAUTIFUL CONFESSIONS -->
+<section>
+    <div class="card">
+        <h2>🗣️ My Confessions To You</h2>
+        <div class="divider"></div>
+        <div style="max-width: 650px; margin: 30px auto;">
+            <div class="confession" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.12), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out;">
+                <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 600; margin-bottom: 10px;">Confession #1:</p>
+                <p style="color: #ffb7d2; font-size: 1.1rem;">I love you more than words could ever express. Sometimes I just stare at you in disbelief that you're actually mine. 💕</p>
+            </div>
+            <div class="confession" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.12), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.1s both;">
+                <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 600; margin-bottom: 10px;">Confession #2:</p>
+                <p style="color: #ffb7d2; font-size: 1.1rem;">I get butterflies every single time I hear your voice or see your name pop up on my screen. Even after all this time. 🦋</p>
+            </div>
+            <div class="confession" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.12), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.2s both;">
+                <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 600; margin-bottom: 10px;">Confession #3:</p>
+                <p style="color: #ffb7d2; font-size: 1.1rem;">You inspire me to be a better person every single day. Your kindness, strength, and beauty motivate me constantly. 🌟</p>
+            </div>
+            <div class="confession" style="background: linear-gradient(135deg, rgba(255, 110, 168, 0.12), rgba(255, 26, 147, 0.08)); padding: 25px; border-radius: 12px; border-left: 5px solid #ff6ea8; animation: slide-in-left 0.6s ease-out 0.3s both;">
+                <p style="font-size: 1.2rem; color: #ff6ea8; font-weight: 600; margin-bottom: 10px;">Confession #4:</p>
+                <p style="color: #ffb7d2; font-size: 1.1rem;">My future only makes sense if you're in it. You're not just my love, you're my destiny. ✨</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COUNTDOWN TO NEXT SPECIAL DAY -->
+<section>
+    <div class="card">
+        <h2>📅 Countdown to Next Special Day</h2>
+        <div class="divider"></div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 30px 0; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <div style="background: rgba(255, 110, 168, 0.15); padding: 20px; border-radius: 12px; border: 2px solid #ff6ea8; text-align: center;">
+                <h3 style="font-size: 2.5rem; color: #ff6ea8; margin: 0;" id="countdown-days">0</h3>
+                <p style="color: #ffb7d2; margin-top: 5px;">Days</p>
+            </div>
+            <div style="background: rgba(255, 110, 168, 0.15); padding: 20px; border-radius: 12px; border: 2px solid #ff6ea8; text-align: center;">
+                <h3 style="font-size: 2.5rem; color: #ff6ea8; margin: 0;" id="countdown-hours">0</h3>
+                <p style="color: #ffb7d2; margin-top: 5px;">Hours</p>
+            </div>
+            <div style="background: rgba(255, 110, 168, 0.15); padding: 20px; border-radius: 12px; border: 2px solid #ff6ea8; text-align: center;">
+                <h3 style="font-size: 2.5rem; color: #ff6ea8; margin: 0;" id="countdown-mins">0</h3>
+                <p style="color: #ffb7d2; margin-top: 5px;">Minutes</p>
+            </div>
+            <div style="background: rgba(255, 110, 168, 0.15); padding: 20px; border-radius: 12px; border: 2px solid #ff6ea8; text-align: center;">
+                <h3 style="font-size: 2.5rem; color: #ff6ea8; margin: 0;" id="countdown-secs">0</h3>
+                <p style="color: #ffb7d2; margin-top: 5px;">Seconds</p>
+            </div>
+        </div>
+        <p style="text-align: center; color: #ffb7d2; margin-top: 20px;">Until your next special moment ✨</p>
+    </div>
+</section>
+
+<!-- PULSING LOVE TEXT -->
+<section>
+    <div style="text-align: center;">
+        <h2 style="font-size: 4rem; color: #ff6ea8; animation: title-glow 2s ease-in-out infinite; text-shadow: 0 0 40px #ff6ea8;">I LOVE YOU MUSKI 💕</h2>
+        <p style="font-size: 1.4rem; color: #ffb7d2; margin-top: 20px; animation: fade-in-up 1.5s ease-out;">More than words can ever say...</p>
+    </div>
+</section>
+
+<!-- ============ ADD THIS JAVASCRIPT CODE BEFORE THE </body> TAG ============ -->
+
+<script>
+    // ============ LOVE LETTER GENERATOR ============
+    const letterTemplates = [
+        {
+            intro: "My Dearest Muski,",
+            body: "Every moment I spend with you is a blessing beyond measure. Your smile brightens even my darkest days. I can't imagine my life without you in it. You are my greatest gift. 💕"
+        },
+        {
+            intro: "To My Beautiful Muski,",
+            body: "Thank you for being my rock, my inspiration, and my reason to smile. Your unconditional love has healed parts of me I didn't know were broken. Forever grateful for you. ❤️"
+        },
+        {
+            intro: "My Love,",
+            body: "In you, I found everything I was looking for and things I didn't even know I needed. You complete me in ways words fail to describe. I love you infinitely. 💖"
+        },
+        {
+            intro: "Dearest Muski,",
+            body: "You are not just my love, you are my home. Wherever you are, that's where I belong. Thank you for loving me, believing in me, and standing by me always. Forever yours. 💕"
+        },
+        {
+            intro: "My Favorite Person,",
+            body: "I fall more in love with you every single day. Your kindness, your strength, your beauty - everything about you takes my breath away. I'm so grateful to have you in my life. 🌟❤️"
+        }
+    ];
+
+    function generateNewLetter() {
+        const randomTemplate = letterTemplates[Math.floor(Math.random() * letterTemplates.length)];
+        const letterDiv = document.getElementById('love-letter');
+        
+        letterDiv.style.opacity = '0';
+        setTimeout(() => {
+            letterDiv.innerHTML = `
+                <p>${randomTemplate.intro}</p>
+                <p style="margin-top: 15px;">${randomTemplate.body}</p>
+                <p style="margin-top: 20px; color: #ff6ea8;">With all my love,<br>Your forever love ❤️</p>
+            `;
+            letterDiv.style.opacity = '1';
+            letterDiv.style.transition = 'opacity 0.5s ease';
+        }, 300);
+
+        createConfetti();
+    }
+
+    // ============ HEART GAME ============
+    let heartCount = 0;
+
+    function initHeartGame() {
+        const gameContainer = document.getElementById('game-container');
+        gameContainer.innerHTML = '';
+        heartCount = 0;
+        document.getElementById('heart-count').textContent = '0';
+
+        for (let i = 0; i < 15; i++) {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.cssText = `
+                font-size: 2.5rem;
+                cursor: pointer;
+                text-align: center;
+                padding: 10px;
+                border-radius: 10px;
+                background: rgba(255, 110, 168, 0.1);
+                transition: all 0.3s ease;
+                border: 2px solid transparent;
+            `;
+
+            heart.addEventListener('click', function() {
+                heartCount++;
+                document.getElementById('heart-count').textContent = heartCount;
+                
+                this.style.transform = 'scale(1.3) rotateZ(360deg)';
+                this.style.background = 'rgba(255, 110, 168, 0.3)';
+                this.style.border = '2px solid #ff6ea8';
+                
+                createConfetti();
+
+                setTimeout(() => {
+                    this.innerHTML = '💕';
+                }, 300);
+            });
+
+            heart.addEventListener('mouseover', function() {
+                if (this.innerHTML === '❤️') {
+                    this.style.transform = 'scale(1.15)';
+                    this.style.background = 'rgba(255, 110, 168, 0.2)';
+                }
+            });
+
+            heart.addEventListener('mouseout', function() {
+                if (this.innerHTML === '❤️') {
+                    this.style.transform = 'scale(1)';
+                    this.style.background = 'rgba(255, 110, 168, 0.1)';
+                }
+            });
+
+            gameContainer.appendChild(heart);
+        }
+    }
+
+    function resetHeartGame() {
+        initHeartGame();
+    }
+
+    // Initialize game on page load
+    initHeartGame();
+
+ 
+    // ============ ANIMATION KEYFRAMES ============
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes love-fill-animation {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+
